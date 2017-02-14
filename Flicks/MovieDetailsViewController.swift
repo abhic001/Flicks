@@ -1,9 +1,9 @@
 //
 //  MovieDetailsViewController.swift
-//  Flicks
+//  MovieViewer
 //
-//  Created by Abhijeet Chakrabarti on 2/6/16.
-//  Copyright © 2017 Abhijeet Chakrabarti. All rights reserved.
+//  Created by Abhijeet Chakrabarti on 2/6/17.
+//  Copyright © 2017 Abhijeet Chakrabarti. All rights reserved.//
 //
 
 import UIKit
@@ -18,14 +18,23 @@ class MovieDetailsViewController: UIViewController {
     
     @IBOutlet weak var ratingLabel: UILabel!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var infoView: UIView!
+    
+    
     var movie: NSDictionary!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: infoView.frame.origin.y + infoView.frame.size.height)
+        
         titleLabel.text = movie["title"] as! String
         overviewLabel.text = movie["overview"] as! String
         let rating =  movie["vote_average"] as! Double
+        
+        overviewLabel.sizeToFit()
         
         ratingLabel.text = String(rating)
         
